@@ -13,7 +13,6 @@ function loadData($query){
 }
 
 
-
 function addDataSantri($data){
   global $koneksi;
   $niup = htmlspecialchars(ucwords(strtolower($data["niup"])));

@@ -11,6 +11,11 @@ require "functions.php";
 
 $allDataPeminjaman = loadData("SELECT * FROM tb_peminjaman AS p JOIN tb_santri AS s JOIN tb_kamar AS k JOIN tb_devisi AS d ON p.niup = s.niup AND s.kode_kamar = k.kode_kamar AND k.kode_devisi = d.kode_devisi WHERE p.waktu_kembali IS NOT NULL");
 
+if(isset($_POST["cari"])){
+  $keyword = $_POST["keyword"];
+  $allDataPeminjaman = loadData("SELECT * FROM tb_peminjaman AS p JOIN tb_santri AS s JOIN tb_kamar AS k JOIN tb_devisi AS d ON p.niup = s.niup AND s.kode_kamar = k.kode_kamar AND k.kode_devisi = d.kode_devisi WHERE (s.niup LIKE '%$keyword%' OR s.nama LIKE '%$keyword%') AND p.waktu_kembali IS NOT NULL");
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -98,15 +103,17 @@ $allDataPeminjaman = loadData("SELECT * FROM tb_peminjaman AS p JOIN tb_santri A
                                             class="fa-solid fa-file-export"></i> Export Data</a>
 
                                     <div class="card-tools">
-                                        <div class="input-group input-group-sm">
-                                            <input type="text" name="table_search" class="form-control"
-                                                placeholder="Search">
-                                            <div class="input-group-append">
-                                                <button type="submit" class="btn btn-default">
-                                                    <i class="fas fa-search"></i>
-                                                </button>
+                                        <form action="" method="post">
+                                            <div class="input-group input-group-sm">
+                                                <input type="text" name="keyword" class="form-control"
+                                                    placeholder="Search">
+                                                <div class="input-group-append">
+                                                    <button type="submit" class="btn btn-default" name="cari">
+                                                        <i class="fas fa-search"></i>
+                                                    </button>
+                                                </div>
                                             </div>
-                                        </div>
+                                        </form>
                                     </div>
                                 </div>
                                 <!-- /.card-header -->

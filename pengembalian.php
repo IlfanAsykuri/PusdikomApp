@@ -3,6 +3,10 @@ require "admin/functions.php";
 
 $allPeminjaman = loadData("SELECT * FROM tb_peminjaman AS p JOIN tb_santri AS s JOIN tb_kamar AS k JOIN tb_devisi AS d ON p.niup = s.niup AND s.kode_kamar = k.kode_kamar AND k.kode_devisi = d.kode_devisi WHERE p.waktu_kembali IS NULL");
 
+if(isset($_POST["cari"])){
+  $keyword = $_POST["keyword"];
+  $allPeminjaman = loadData("SELECT * FROM tb_peminjaman AS p JOIN tb_santri AS s JOIN tb_kamar AS k JOIN tb_devisi AS d ON p.niup = s.niup AND s.kode_kamar = k.kode_kamar AND k.kode_devisi = d.kode_devisi WHERE (s.niup LIKE '%$keyword%' OR s.nama LIKE '%$keyword%') AND p.waktu_kembali IS NULL");
+}
 
 ?>
 <!DOCTYPE html>
@@ -80,18 +84,17 @@ $allPeminjaman = loadData("SELECT * FROM tb_peminjaman AS p JOIN tb_santri AS s 
             <div class="card">
                 <div class="card-header">
                     <h3 class="card-title">Pengembalian Laptop</h3>
-
                     <div class="card-tools">
-                        <div class="input-group input-group-sm" style="width: 150px;">
-                            <input type="text" name="table_search" class="form-control float-right"
-                                placeholder="Search">
-
-                            <div class="input-group-append">
-                                <button type="submit" class="btn btn-default">
-                                    <i class="fas fa-search"></i>
-                                </button>
+                        <form action="" method="post">
+                            <div class="input-group input-group-sm" style="width: 250px;">
+                                <input type="text" name="keyword" class="form-control float-right" placeholder="Search">
+                                <div class="input-group-append">
+                                    <button type="submit" class="btn btn-default" name="cari">
+                                        <i class="fas fa-search"></i>
+                                    </button>
+                                </div>
                             </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
                 <!-- /.card-header -->
