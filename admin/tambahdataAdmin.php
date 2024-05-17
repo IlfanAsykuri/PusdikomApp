@@ -9,7 +9,6 @@ if(!$_SESSION["login"]){
 
 require "functions.php";
 
-if(isset($_POST["tambah"])){
 
   if(isset($_POST["tambah"])){
 
@@ -32,7 +31,6 @@ if(isset($_POST["tambah"])){
 
 }
 
-}
 
 ?>
 <!DOCTYPE html>

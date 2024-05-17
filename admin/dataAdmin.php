@@ -142,8 +142,7 @@ $allDataAdmin = loadData("SELECT * FROM tb_admin");
                                                     <a href="editSantri.php?niup=<?= $admin["id_admin"] ?>"
                                                         class="btn btn-sm btn-success"><i
                                                             class="fa-solid fa-pen-to-square"></i></a>
-                                                    <a href="hapusSantri.php?niup=<?= $admin["id_admin"] ?>"
-                                                        class="btn btn-sm btn-danger"
+                                                    <a href="#" class="btn btn-sm btn-danger"
                                                         onclick="return confirm('Apakah anda yakin ingin menghapus data?');"><i
                                                             class="fa-solid fa-trash-can"></i></a>
                                                 </td>

@@ -366,7 +366,8 @@ function login($data){
 
   // cek apakah email ada atau cocok dengan yang di database
   $result = mysqli_query($koneksi, "SELECT * FROM tb_admin WHERE email = '$email'");
-  if(mysqli_num_rows($result) === 1){
+  if(mysqli_num_rows($result) == 1){
+
 
     // cek jika password sama dengan password yang ada di database
     $row = mysqli_fetch_assoc($result);
